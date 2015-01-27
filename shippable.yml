@@ -8,6 +8,7 @@ node_js:
 install:
   - sudo apt-get update
   - sudo apt-get -y install mono-complete
+  - mozroots --import --sync
   - curl -LO http://nuget.org/nuget.exe
 
 script:
