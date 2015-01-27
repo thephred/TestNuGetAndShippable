@@ -17,6 +17,7 @@ before_script:
 
 script:
   - mono nuget.exe restore
+  - xbuild /target:Clean
   - xbuild TestNuGetAndShippable.sln
   - cp -a TestNuGetAndShippable/bin/Debug shippable/output
   - mono "$(ls -d packages/NUnit.Runners.* | tail -n 1)/tools/nunit-console.exe" tests/bin/Debug/tests.dll
