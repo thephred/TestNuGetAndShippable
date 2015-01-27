@@ -15,5 +15,5 @@ script:
   - mono --version
   - mono nuget.exe restore
   - xbuild TestNuGetAndShippable.sln
-  - mono "$(ls -d packages/NUnit.Runners.* | tail -n 1)"/tools/nunit-console.exe tests/Debug/tests.dll
+  - mono "$(ls -d packages/NUnit.Runners.* | tail -n 1)/tools/nunit-console.exe" tests/bin/Debug/tests.dll
   - mkdir -p shippable/testresults && mv -f TestResult.xml shippable/testresults
