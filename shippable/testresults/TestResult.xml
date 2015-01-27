@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="/Users/mgoff/Projects/TestNuGetAndShippable/tests/bin/Debug/tests.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2015-01-27" time="13:19:17">
+  <environment nunit-version="2.6.4.14350" clr-version="2.0.50727.1433" os-version="Unix 14.0.0.0" platform="Unix" cwd="/Users/mgoff/Projects/TestNuGetAndShippable" machine-name="MichaelWorkMac.local" user="mgoff" user-domain="MichaelWorkMac.local" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="/Users/mgoff/Projects/TestNuGetAndShippable/tests/bin/Debug/tests.dll" executed="True" result="Success" success="True" time="0.018" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="tests" executed="True" result="Success" success="True" time="0.013" asserts="0">
+        <results>
+          <test-suite type="TestFixture" name="Test" executed="True" result="Success" success="True" time="0.013" asserts="0">
+            <results>
+              <test-case name="tests.Test.TestCase" executed="True" result="Success" success="True" time="0.009" asserts="1" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
