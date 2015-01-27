@@ -7,13 +7,16 @@ node_js:
 
 install:
   - sudo apt-get update
-  - sudo apt-get -y install mono-complete
+  - sudo apt-get -y install mono-complete xsltproc
   - mozroots --import --sync
   - curl -LO http://nuget.org/nuget.exe
+
+before_script:
+  - mkdir -p shippable/testresults
 
 script:
   - mono --version
   - mono nuget.exe restore
   - xbuild TestNuGetAndShippable.sln
   - mono "$(ls -d packages/NUnit.Runners.* | tail -n 1)/tools/nunit-console.exe" tests/bin/Debug/tests.dll
-  - mkdir -p shippable/testresults && mv -f TestResult.xml shippable/testresults
+  - xsltproc nunit-to-junit.xsl TestResult.xml > shippable/testresults/TestResult.xml
