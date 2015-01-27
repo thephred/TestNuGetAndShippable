@@ -1,5 +1,7 @@
 build_image: shippableimages/ubuntu1404_nodejs
 
+cache: true
+
 language: node_js
 
 node_js:
@@ -19,4 +21,6 @@ script:
   - mono nuget.exe restore
   - xbuild TestNuGetAndShippable.sln
   - mono "$(ls -d packages/NUnit.Runners.* | tail -n 1)/tools/nunit-console.exe" tests/bin/Debug/tests.dll
+
+after_script:
   - xsltproc nunit-to-junit.xsl TestResult.xml > shippable/testresults/TestResult.xml
