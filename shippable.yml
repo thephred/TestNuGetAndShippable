@@ -1,0 +1,16 @@
+language: node_js
+
+node_js:
+  - "0.10"
+
+before_install:
+  - apt-get install mono-complete
+
+install:
+  - curl -LO http://nuget.org/nuget.exe
+
+script:
+  - mono nuget.exe restore
+  - xbuild TestNuGetAndShippable.sln
+  - mono "$(ls -d packages/NUnit.Runners.* | tail -n 1)"/tools/nunit-console.exe tests/Debug/tests.dll
+  - mkdir -p shippable/testresults && mv -f TestResult.xml shippable/testresults
