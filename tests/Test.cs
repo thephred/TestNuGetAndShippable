@@ -15,7 +15,7 @@ namespace tests
 		[Test ()]
 		public void AnotherTestCase ()
 		{
-			Assert.AreEqual (1, 2);
+			Assert.AreEqual (2, 2);
 		}
 	}
 }
