@@ -1,13 +1,10 @@
-build_image: shippableimages/ubuntu1404_nodejs
+build_image: shippableimages/ubuntu1404_base
 
+# Cache the container for subsequent builds
 cache: true
 
+# Keep and archive of artifacts
 archive: true
-
-language: node_js
-
-node_js:
-  - "0.10"
 
 install:
   - sudo apt-get update
@@ -19,10 +16,9 @@ before_script:
   - mkdir -p shippable/testresults
 
 script:
-  - mono --version
   - mono nuget.exe restore
   - xbuild TestNuGetAndShippable.sln
-  - cp TestNuGetAndShippable/bin/Debug/TestNuGetAndShippable.exe shippable
+  - cp -a TestNuGetAndShippable/bin/Debug shippable/output
   - mono "$(ls -d packages/NUnit.Runners.* | tail -n 1)/tools/nunit-console.exe" tests/bin/Debug/tests.dll
 
 after_script:
