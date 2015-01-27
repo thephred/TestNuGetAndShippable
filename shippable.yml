@@ -3,10 +3,8 @@ language: node_js
 node_js:
   - "0.10"
 
-before_install:
-  - apt-get install mono-complete
-
 install:
+  - apt-get install mono-complete
   - curl -LO http://nuget.org/nuget.exe
 
 script:
