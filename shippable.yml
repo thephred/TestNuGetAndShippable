@@ -6,7 +6,7 @@ node_js:
   - "0.10"
 
 install:
-  - sudo apt-get install mono-complete
+  - sudo apt-get -y install mono-complete
   - curl -LO http://nuget.org/nuget.exe
 
 script:
