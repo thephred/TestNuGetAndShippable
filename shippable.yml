@@ -8,7 +8,7 @@ archive: true
 
 install:
   - sudo apt-get update
-  - sudo apt-get -y install mono-complete xsltproc
+  - sudo apt-get -y install mono-complete xsltproc curl
   - mozroots --import --sync
   - curl -LO http://nuget.org/nuget.exe
 
