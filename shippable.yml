@@ -6,6 +6,8 @@ cache: true
 # Keep and archive of artifacts
 archive: true
 
+- secure: L7HnQtnvt5vQVaTtOQzBiqYSO8I2NM7sXomKrFUvVYU44kEbJ36XWDdHnTMou53IOlFXTwsdoZ+xeKCgJfU224TG/qsYXMTQVX5LXvpnuxraXgBJCE365d4jJVjikTdpfNfwmGSpVy8bqKYZjQ7raEL6Vyzch2+PPStVzVNyv7RwXynY5GFpV7FRMvwLuMbZOG0FeTF3F7Zef3FoRjC7F+a/DvYtllooRei91hKdUW1iUmBs0Cg8qi+tP5aOt7htzb313c6gHCjIYyuvMRH43IkwFuny875eA3xg6n6JcclVYhYP8gXLQtJbxvPOBrzvsu5NaWiat1XVYDP77uLGYA==
+
 install:
   - sudo apt-get update
   - sudo apt-get -y install mono-complete xsltproc curl
@@ -24,3 +26,9 @@ script:
 
 after_script:
   - xsltproc nunit-to-junit.xsl TestResult.xml > shippable/testresults/TestResult.xml
+
+after_success:
+  - rm -f *.nupkg
+  - sed -i '' 's/\[BUILD_NUMBER\]/'"$BUILD_NUMBER"'/' TestNuGetAndShippable.nuspec
+  - mono nuget.exe pack TestNuGetAndShippable.nuspec
+  - mono nuget.exe push TestNuGetAndShippable.*.nupkg $MYGET_APIKEY -Source https://www.myget.org/F/thephred-test/api/v2/package
